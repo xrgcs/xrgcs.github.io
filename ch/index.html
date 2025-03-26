@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTX Channel calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <style>
+        .circle-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            /* background-color: #f1f1f1; */
+        }
+
+        .circle {
+            position: absolute;
+            z-index: 2;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #3498db;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .central-circle {
+            width: 32px;
+            height: 32px;
+            background: #0cbb92;
+            /* font-size: 14px; */
+            font-weight: bold;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+        }
+
+        .inactive-circle {
+            background-color: var(--input-bg-color);
+            color: #ecf0f1;
+            border: 1px dashed;
+            border-color: var(--inactive-border);
+            z-index: 2;
+
+        }
+
+        .line {
+            position: absolute;
+            z-index: 1;
+            transform-origin: 0 0;
+            border: 1px dashed #e3aa39;
+            /* Активна лінія */
+
+        }
+
+        .inactive-line {
+            border: 1px dashed;
+            /* Неактивна лінія */
+            border-color: var(--inactive-border);
+        }
+
+        .line span {
+            position: absolute;
+            top: -10px;
+            left: 70px;
+            font-size: 12px;
+            background: #fff0c1;
+            padding: 3px;
+            color: #da892d;
+            border-radius: 3px;
+            border: 1px solid #f9ce2d;
+            border-radius: 6px;
+        }
+
+        .ch_selected {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            margin-top: 10px;
+        }
+
+        .ch_results {
+            padding-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ch_result_item {
+            background-color: var(--channel-color-1);
+            padding: 6px;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .selected-channel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 28px;
+        }
+
+        .selected-channel {
+            background-color: var(--input-bg-color);
+            color: var(--text-color);
+            padding: 6px;
+            border: dashed 1px;
+            border-color: var(--inactive-border);
+            border-radius: 8px;
+            font-size: 14px;
+            position: relative;
+            padding-right: 26px;
+            cursor: pointer;
+        }
+
+        .remove-channel {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            font-weight: 400;
+            color: #9c9c9c;
+        }
+
+        .selected-channel:hover {
+            border: solid 1px;
+            border-color: var(--delete-button-background);
+            color: var(--delete-button-background);
+
+
+        }
+
+        .selected-channel:hover .remove-channel {
+            color: var(--delete-button-background);
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="language-selector">
+        <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="ch_title">VTX channel calculator</h1>
+        <blockquote data-i18n="ch_descr" class="good" id="notice">
+            Description
+        </blockquote>
+        <div id="aux-template-select" class="hor-group">
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="pilots" data-i18n="ch_pilots">Plts</label>
+                    <span class="tooltiptext-left" data-i18n="ch_pilots_tooltip"></span>
+                </div>
+                <select type="number" id="pilots">
+                    <option data-i18n="ch_2_pilots_option" value="2">2 pilots</option>
+                    <option data-i18n="ch_3_pilots_option" value="3" selected>3 pilots</option>
+                    <option data-i18n="ch_4_pilots_option" value="4">4 pilots</option>
+                    <option data-i18n="ch_5_pilots_option" value="5">5 pilots</option>
+                    <option data-i18n="ch_6_pilots_option" value="6">6 pilots</option>:
+                </select>
+            </div>
+            <div class="flex-child">
+                <label for="range" data-i18n="ch_band">Band</label>
+                <select id="range">
+                </select>
+            </div>
+            <div class="flex-child">
+                <label for="channel" data-i18n="ch_channel">Channel</label>
+                <select id="channel"></select>
+            </div>
+            <div>
+                <button id="add-channel" data-i18n="add">Додати</button>
+            </div>
+        </div>
+        <div class="hor-group">
+            <div class="flex-child checkbox-container">
+                <input type="checkbox" id="includeXBand" onchange="populateRanges()">
+                <label for="includeXBand" class="checkbox_label" data-i18n="ch_includeXBand">Include X</label>
+            </div>
+            <div class="flex-child checkbox-container">
+                <input type="checkbox" id="includeLBand" onchange="populateRanges()">
+                <label for="includeLBand" class="checkbox_label" data-i18n="ch_includeLBand">Include L</label>
+            </div>
+        </div>
+        <span id="selected-channels-title" class="selected-channel-title hidden" data-i18n="ch_selected">Обрані
+            канали:</span>
+        <div id="selected-channels" class="ch_selected">
+
+            <!-- Обрані канали будуть відображатися тут -->
+        </div>
+
+        <button id="calculateChannelsButton" type="button" data-i18n="ch_calculateChannelsButton">Calculate
+            result</button>
+        <div id="result" class="hidden">
+            <pre id="result-output"></pre>
+            <button id="copy-button" data-i18n="copy_button" onclick="copyToClipboard()">Copy result</button>
+        </div>
+        <div id="ch_result" class="hidden">
+            <div id="results" class="ch_results"></div>
+
+            <div id="visualization" class="circle-container"></div>
+
+        </div>
+    </div>
+    <div class="center">
+        <h4>
+            <span data-i18n="version">Version</span> 0.2, October 10, 2024 <div class="top-8"><a href="#"
+                    id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+    </div>
+    </h4>
+    </div>
+    <script src="channels.js"></script>
+    <script src="script.js"></script>
+    <script src="../js/translations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+    <script src="../js/toast.js"></script>
+
+
+</body>
+
+</html>

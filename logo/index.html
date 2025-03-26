@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSD logo converter</title>
+    <link rel="stylesheet" href="styleosd.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="language-selector">
+            <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+            <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+        </div>
+        <div class="back-button" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="logo_title">OSD logo converter</h1>
+        <blockquote data-i18n="logo_descr" class="good" id="notice">
+            Description
+        </blockquote>
+        <div class="top-group">
+            <input style="display: none;" type="text" id="paste-area" placeholder="Paste image here">
+            <div>
+                <canvas width="288" height="72" id="original-canvas"></canvas>
+            </div>
+        </div>
+        <div style="display: none;" id="adjustments" class="hor-group">
+            <div class="flex-child">
+                <label data-i18n="logo_satur" for="saturation">Saturation:</label>
+                <input type="range" id="saturation" min="0" max="200" value="100">
+            </div>
+            <div class="flex-child">
+                <label data-i18n="logo_contr" for="saturation">Contrast:</label>
+                <input type="range" id="contrast" min="10" max="200" value="100">
+            </div>
+            <div class="flex-child">
+                <label data-i18n="logo_scale" for="result_scale">Preview scale:</label>
+                <select id="result_scale">
+                    <option data-i18n="logo_orig_option" value="1">Original</option>
+                    <option value="2" selected>2x</option>
+                </select>
+            </div>
+        </div>
+        <div style="display: none;" id="result">
+            <div class="top-group bottom-16 top-0 gap-24">
+
+                <div class="flex-child flex-child-group">
+                    <div class="flex-child">
+                        <label data-i18n="logo_px_color" for="color-buttons">Pixel color:</label>
+                    </div>
+                    <div calss="flex-child">
+                        <div class="color-buttons">
+                            <button id="black-btn"></button>
+                            <button id="white-btn"></button>
+                            <button id="green-btn"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child flex-child-group">
+                    <div class="flex-child">
+                        <label data-i18n="logo_px_size" for="pixel-size">Pixel size:</label>
+                    </div>
+                    <div class="flex-child">
+                        <select id="pixel-size">
+                            <option value="1">1 px</option>
+                            <option value="2">2 px</option>
+                            <option value="4">4 px</option>
+                            <option value="8">8 px</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex-child flex-child-group">
+
+                    <a href="#" data-i18n="logo_reset" onclick="applySaturation()">Reset drawing</a>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <div>
+                    <canvas id="processed-canvas" style="display: none;"></canvas>
+                    <canvas id="scaled-canvas" style="display: none;"></canvas>
+                </div>
+            </div>
+            <button data-i18n="logo_download" id="download" onclick="saveImage()">Download BMP</button>
+
+        </div>
+
+    </div>
+
+    <div class="center">
+        <h4>
+            <span data-i18n="version">Version</span> 0.2, September 01, 2024 <div class="top-8"><a href="#"
+                    id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+    </div>
+    </h4>
+    </div>
+    <script src="script.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+    <script src="../js/translations.js"></script>
+
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47969c23cbe94e01bf4d21e77c08169e"}'></script><!-- Cloudflare Pages Analytics --></body>
+
+</html>

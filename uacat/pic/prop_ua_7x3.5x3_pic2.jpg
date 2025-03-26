@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">VTX config generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div tabindex="1" id="language-selector">
+        <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+
+    <div class="container">
+        <img id="logo" src="images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="title">VTX config generator</h1>
+        <blockquote id="notice" class="hidden">
+            <p data-i18n="descr"></p>
+        </blockquote>
+        <div class="tool-container">
+            <a href="/cfg" class="tool" tabindex="2">
+                <div>
+                    <h3 data-i18n="cfg_title"></h3>
+                    <!-- <p data-i18n="cfg_descr"></p> -->
+                </div>
+                <span class="tool-link">»</span>
+            </a>
+
+            <div class="tool-group">
+                <div class="tool tool-group-header" tabindex="2">
+                    <div>
+                        <h3 data-i18n="group_catalogs">Cats</h3>
+                    </div>
+                    <span class="tool-link group-toggle">›</span>
+                </div>
+                <div class="tool-group-content">
+                    <a href="/vcat" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="vcat_title"></h3>
+                            <!-- <p data-i18n="ch_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/rcat" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="rcat_title"></h3>
+                            <!-- <p data-i18n="ch_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/uacat" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="uacat_title"></h3>
+                            <!-- <p data-i18n="ch_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-group">
+                <div class="tool tool-group-header" tabindex="2">
+                    <div>
+                        <h3 data-i18n="group_calculators">Calculators</h3>
+                    </div>
+                    <span class="tool-link group-toggle">›</span>
+                </div>
+                <div class="tool-group-content">
+                    <a href="/ch" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="ch_title"></h3>
+                            <!-- <p data-i18n="ch_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/hrm" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="hrm_title"></h3>
+                            <!-- <p data-i18n="hrm_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/dpl" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="dpl_title"></h3>
+                            <!-- <p data-i18n="frn_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/ant" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="ant_title"></h3>
+                            <!-- <p data-i18n="ant_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+                    <a href="/frn" class="tool" tabindex="3">
+                        <div>
+                            <h3 data-i18n="frn_title"></h3>
+                            <!-- <p data-i18n="frn_descr"></p> -->
+                        </div>
+                        <span class="tool-link">»</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="/inf" class="tool sub-tool" tabindex="2">
+                <div>
+                    <h3 data-i18n="inf_title"></h3>
+                    <!-- <p data-i18n="logo_descr"></p> -->
+                </div>
+                <span class="tool-link">»</span>
+            </a>
+            <a href="/elrs" class="tool sub-tool" tabindex="2">
+                <div>
+                    <h3 data-i18n="elrs_title">
+                    </h3>
+                    <!-- <p data-i18n="logo_descr"></p> -->
+                </div>
+                <span class="tool-link">»</span>
+            </a>
+            <a href="/logo" class="tool" tabindex="2">
+                <div>
+                    <h3 data-i18n="logo_title"></h3>
+                    <!-- <p data-i18n="logo_descr"></p> -->
+                </div>
+                <span class="tool-link">»</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="center">
+
+        <h4>
+            <div class="top-8"><a href="#" id="theme-toggle" tabindex="3" data-i18n="theme_toggle">Switch theme</a>
+            </div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+            </div>
+        </h4>
+
+        <script src="js/translations.js?v=1.0.6"></script>
+        <script src="js/theme.js"></script>
+        <script src="js/overlay.js"></script>
+        <script src="js/expand.js"></script>
+
+
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47969c23cbe94e01bf4d21e77c08169e"}'></script><!-- Cloudflare Pages Analytics --></body>
+
+</html>

@@ -1,0 +1,65 @@
+:root {
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --input-bg-color: #fff;
+    --input-text-color: #333;
+    --container-background: #fff;
+    --container-shadow: rgba(0, 0, 0, 0.1);
+    --button-background: #007BFF;
+    --button-hover: #0056b3;
+    --button-disabled: #b9dbff;
+    --button-disabled-text: #fff;
+    --copy-button-background: #28a745;
+    --copy-button-hover: #218838;
+    --delete-button-background: #f60101;
+    --delete-button-hover: #930000;
+    --tooltip-background: #555;
+    --tooltiptext-color: #fff;
+    --language-selector-background: #fff;
+    --logo-filter: invert(0%);
+    --link: #007BFF;
+    --blockquote: #fff7e7;
+    --blockquote-good: #f0f7ff;
+    --inactive-border: #d1d1d1;
+    --channel-color-1: #ad6ae6;
+    --channel-color-2: #6c6ae6;
+    --channel-color-3: #e7835d;
+    --channel-color-4: #40bc89;
+    --alert-background: #ffe0e0;
+    --border: #ddd;
+
+}
+
+:root.dark-theme {
+    --background-color: #121212;
+    --text-color: #a0a0a0;
+    --input-bg-color: #333;
+    --input-text-color: #f4f4f4;
+    --container-background: #333;
+    --container-shadow: rgba(255, 255, 255, 0.1);
+    --button-background: #275590;
+    --button-hover: #0056b3;
+    --button-disabled: #434343;
+    --button-disabled-text: #6b6b6b;
+    --copy-button-background: #35804d;
+    --copy-button-hover: #218838;
+    --delete-button-background: #e60000;
+    --delete-button-hover: #930000;
+    --tooltip-background: #2b2b2b;
+    --tooltiptext-color: #e0e0e0;
+    --language-selector-background: #333;
+    --checkbox-filter: invert(70%) hue-rotate(180deg) contrast(150%);
+    --logo-filter: invert(70%);
+    --link: #79cbff;
+    --blockquote: #262626;
+    --blockquote-good: #262626;
+    --inactive-border: #4c4c4c;
+    --channel-color-1: #5f4575;
+    --channel-color-2: #494888;
+    --channel-color-3: #744f3f;
+    --channel-color-4: #457561;
+    --alert-background: #493232;
+    --border: #7d7d7d;
+    color-scheme: dark;
+    --infopic-filter: brightness(50%);
+}

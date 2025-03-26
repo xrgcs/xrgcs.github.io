@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="uacat_title">🇺🇦 Каталог</title>
+    <link rel="stylesheet" href="../styles/cat.css?v=1.0.0">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body>
+    <div id="imageModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img id="imgInModal" src="">
+        </div>
+    </div>
+    </div>
+    <button class="burger-menu" onclick="toggleFilters()">
+        <span class="icon">☰</span>
+    </button>
+    <div id="overlay" class="overlay"></div>
+    <div class="container">
+        <div class="filters-column">
+            <div class="back-button-cat" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                    viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                        fill="#75B6FF" />
+                </svg> </div>
+            <div class="logo-box">
+                <img id="logo" src="../images/mafia.svg" width="52px" height="52px" class="center">
+                <h3 data-i18n="uacat_title">🇺🇦 Каталог</h3>
+            </div>
+            <div class="filters" id="filters"></div>
+            <button data-i18n="rcat_reset" onclick="resetFilters()">Скинути фільтри</button>
+            <div class="filters-footer">
+                <span data-i18n="version">Версія</span> 0.1, March 15, 2025
+                <p>Позицій у базі: <strong id="totalVtx">-</strong></p>
+                <a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+
+            </div>
+        </div>
+        <div class="results-column">
+            <div class="searchContainer">
+                <input type="text" id="searchInput" placeholder="Пошук">
+                <button id="clearBtn" class="clear-btn">&times;</button>
+            </div>
+            <div id="json">Завантаження...</div>
+        </div>
+    </div>
+    <script>
+        const CONFIG = {
+            S_ID: "1r-3JB96NnpppCLrSXG1DA23P2ZWF6W5spr4piC1lsAc",
+            SHOW_BUTTON: true,
+            S_GID: "0",
+            // S_GID: "721226251", // Test database
+        }
+
+    </script>
+    <script src="../js/cat.js?v=1.0.2"></script>
+    <script src="../js/translations.js?v=1.0.2"></script>
+
+</body>
+
+</html>

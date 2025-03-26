@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="ant_title">Best channel finder</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body class="ant-page">
+    <div id="language-selector">
+        <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="ant_title">Best channel finder</h1>
+        <blockquote data-i18n="ant_descr" class="good" id="notice">
+            Description
+        </blockquote>
+        <div id="aux-template-select" class="hor-group">
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip">
+                    <label class="required" for="startFrequencyInput" data-i18n="ant_freq_start">Frq start</label>
+                    <span class="tooltiptext-left" data-i18n="ant_freq_start_tooltip"></span>
+                </div>
+                <input type="number" id="startFrequencyInput">
+            </div>
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip">
+                    <label for="endFrequencyInput" data-i18n="ant_freq_end">Frq end</label>
+                    <span class="tooltiptext" data-i18n="ant_freq_end_tooltip"></span>
+                </div>
+                <input type="number" id="endFrequencyInput">
+            </div>
+            <div class="flex-child">
+                <label for="channelCountSelect" data-i18n="ant_ch_count">Chn count</label>
+                <select id="channelCountSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8" selected>8</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button id="findClosestButton" type="button" disabled data-i18n="ch_calculateChannelsButton">Calculate
+            result</button>
+        <div id="ch_result" class="hidden">
+            <div id="results" class="ch_results"></div>
+        </div>
+    </div>
+    <div class="center">
+        <h4>
+            <span data-i18n="version">Version</span> 0.2, January 1, 2025 <div class="top-8"><a href="#"
+                    id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+    </div>
+    </h4>
+    </div>
+    <script src="../ch/channels.js"></script>
+    <script src="script.js"></script>
+    <script src="../js/translations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+
+</body>
+
+</html>

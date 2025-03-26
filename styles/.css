@@ -1,0 +1,482 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+}
+
+.container {
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.filters select {
+  margin-bottom: 0.8em;
+}
+
+.filters-column {
+  flex: 0 0 200px;
+  padding: 16px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--container-color);
+  overflow-y: auto;
+}
+
+.results-column {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  box-shadow: inset 2px 0 8px rgb(14 14 14 / 10%);
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+  width: 240px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  text-align: center;
+  /* min-height: 42px; */
+}
+
+.card-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.card-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.85em;
+}
+
+.card-item span {
+  flex-shrink: 0;
+}
+
+.dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 8px;
+}
+
+.card-item strong {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.open {
+  display: flex !important;
+  /* !important щоб перевизначити inline style */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.search-link {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.burger-menu {
+  display: none;
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  bottom: 0.5em;
+  left: 0.5em;
+  z-index: 1100;
+  padding: 10px;
+  line-height: 100%;
+  background-color: var(--button-background);
+  opacity: 75%;
+  border-radius: 64px;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+}
+
+.burger-menu.open {
+  left: calc(250px + 0.5em);
+}
+
+button.burger-menu:hover {
+  background-color: var(--button-background);
+}
+
+.logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-box h3 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.75em;
+  font-size: 1.1em;
+}
+
+.filters-footer {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* Додаємо position: relative, щоб .clear-btn правильно розташовувалась */
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+#searchInput {
+  width: 640px;
+  padding-right: 32px;
+  height: 36px;
+  font-size: 16px;
+}
+
+.clear-btn {
+  position: absolute;
+  width: 28px;
+  right: calc(50% - 320px + 6px);
+  top: 8px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-color);
+  display: none;
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.clear-btn:hover {
+  color: var(--button-background);
+  background: var(--button-disabled);
+}
+
+.modal-navigation {
+  position: fixed;
+  /* змінено з absolute на fixed */
+  top: 50%;
+  /* додано позиціонування по центру */
+  transform: translateY(-50%);
+  /* для точного центрування по вертикалі */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  /* змінено з center на space-between */
+  align-items: center;
+  padding: 0 20px;
+  /* додано бічні відступи */
+  z-index: 1001;
+  pointer-events: none;
+  /* щоб клік проходив крізь контейнер */
+}
+
+.modal-navigation button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  /* повернути можливість кліку на кнопки */
+}
+
+.modal-navigation button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Стилі для превью картинок */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.image-container img.fade {
+  opacity: 0;
+}
+
+.image-navigation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)); */
+  padding: 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+.image-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddddddbd;
+  cursor: pointer;
+  border: #ffffff 1px solid;
+  transition: all 0.2s ease;
+}
+
+.dot:hover {
+  background: #8c8c8c71;
+}
+
+.dot.active {
+  background: #8c8c8cc4;
+  transform: scale(1.2);
+}
+
+/* .card-note p {
+  margin-bottom: 4px;
+  font-size: 0.85em;
+  background-color: #f5faff;
+  border: 1px solid #c5d1da;
+  border-radius: 2px;
+  line-height: 130%;
+  padding: 6px 8px;
+  margin-top: 0.4em;
+  margin-left: -21px;
+  margin-right: -21px;
+  box-shadow: 0 1px 2px 1px rgb(26 29 46 / 10%);
+} */
+
+.card-note p {
+  margin-top: 0.4em;
+  margin-bottom: 0.75em;
+  font-size: 0.8em;
+
+  border-radius: 2px;
+  line-height: 130%;
+}
+
+
+@media screen and (max-width: 900px) {
+  .filters-column {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100dvh;
+    width: 250px;
+    background-color: var(--container-background);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  .filters-column.open {
+    transform: translateX(0);
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .results-column {
+    padding: 16px;
+  }
+
+  .cards-container {
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 200px;
+    max-width: 400px;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    /* Make sure it's below the filters column which has z-index: 1000 */
+  }
+
+  .overlay.open {
+    display: block;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 95vh;
+    padding: 10px;
+  }
+
+  #searchInput {
+    width: 100%;
+    /* max-width: 434px; */
+    padding-right: 32px;
+  }
+
+  .clear-btn {
+    position: absolute;
+    width: 28px;
+    left: calc(100% - 32px);
+    top: 8px;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    display: none;
+    padding: 3px;
+    border-radius: 8px;
+  }
+
+  .clear-btn:hover {
+    color: var(--button-background);
+    background: var(--button-disabled);
+  }
+
+  .modal-navigation {
+    padding: 0 10px;
+  }
+
+  .modal-navigation button {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+.back-button-cat {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 0px;
+  background-color: var(--blockquote-good);
+  border-radius: 0px 0px 20px 0px;
+  cursor: pointer;
+  border-color: #c8e2ff;
+  padding: 12px;
+}
+
+.back-button-cat:hover {
+  background-color: var(--link);
+}
+
+.back-button-cat>svg>path {
+  fill: var(--link);
+}
+
+.back-button-cat:hover>svg>path {
+  fill: var(--tooltiptext-color);
+}

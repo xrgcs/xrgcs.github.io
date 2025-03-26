@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="inf_title">ELRS info</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body>
+    <div id="language-selector">
+        <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/'">
+            <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg>
+        </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="inf_title">ELRS info</h1>
+        <blockquote data-i18n="inf_descr" class="good" id="notice">
+            Description
+        </blockquote>
+        <div class="hor-group">
+            <input type="file" id="sourcefile" accept=".bin, .gz" />
+        </div>
+
+        <div id="main_container" class="hidden">
+            <div id="resultsDiv" class="inf-results">
+                <div class="title-block"><span id="title-display"></span>
+                    <div class="chips">
+                        <div class="chip"><img src="../images/radiotype.svg" width="16px"
+                                style="filter: var(--logo-filter);"><span id="device-type">TX/RX</span></div>
+                        <div class="chip"><img src="../images/mcu.svg" width="16px" style="filter: var(--logo-filter);">
+                            <span id="radio-type">MCU</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="info-display-wifi">33</div>
+                <div id="info-display"></div>
+                <button id="target-url" style="margin-top: 0px;" data-i18n="inf_gen_button">Згенерувати прошивку</button>
+                <div id="info-display"><span data-i18n="inf_layout">Hardware layout:</span><span
+                        style="font-weight: bold;" id="layout-display"></span> <button id="copy-button"
+                        data-i18n="inf_copy_button" onclick="copyToClipboard()">Скопіювати</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center">
+        <h4>
+            <span data-i18n="version">Version</span> 0.3, January 25, 2025
+            <div class="top-8"><a href="#" id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+        </h4>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+    <script src="../js/translations.js"></script>
+    <script src="../js/toast.js"></script>
+</body>
+
+</html>

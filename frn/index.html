@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="frn_title">Fresnel zone calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="language-selector">
+        <a href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="frn_title">Fresnel zone calculator</h1>
+        <blockquote data-i18n="frn_descr" class="good" id="notice">
+            Description
+        </blockquote>
+
+        <div class="hor-group">
+            <div class="flex-child">
+                <label for="frequency" data-i18n="frn_frq">Frequency (MHz)</label>
+
+                <input type="number" id="frequency" value="915" onchange="outdatedResults()">
+            </div>
+            <div class="flex-child">
+
+                <label for="distance" data-i18n="frn_distance">Distance (Km)</label>
+
+                <input type="number" id="distance" value="5" onchange="outdatedResults()">
+            </div>
+        </div>
+        <button data-i18n="hrm_calculate_button" onclick="calcFrn()">Calculate</button>
+
+        <div id="frn_result" class="hidden">
+            <div id="resultsDiv" class="frn_results">
+                <div class="frn_result_item bg-100"><span data-i18n="frn_zone1">Frst zone:</span> <span
+                        class="frn_result_item_meters" id="frn_100"></span></div>
+                <div class="frn_result_item bg-80"><span data-i18n="frn_zone80">80 zone:</span> <span
+                        class="frn_result_item_meters" id="frn_80"></span></div>
+                <div class="frn_result_item bg-60"><span data-i18n="frn_zone60">60 zone:</span> <span
+                        class="frn_result_item_meters" id="frn_60"></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <h4>
+            <span data-i18n="version">Version</span> 0.1, October 07, 2024 <div class="top-8"><a href="#"
+                    id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+    </div>
+    </h4>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+    <script src="frn.js"></script>
+    <script src="../js/translations.js"></script>
+</body>
+
+</html>

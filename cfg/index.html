@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTX config generator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div id="language-selector">
+        <a tabindex="1" href="#" onclick="setLanguage('en')" id="lang-en">Eng</a>
+        <a tabindex="1" href="#" onclick="setLanguage('uk')" id="lang-uk">Укр</a>
+    </div>
+
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="cfg_title">VTX config generator</h1>
+        <div id="aux-template-select" class="hor-group">
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip">
+                    <label for="aux-select" data-i18n="aux_select">AUX for VTX control</label>
+                    <span class="tooltiptext-left" data-i18n="aux_select_tooltip"></span>
+                </div>
+                <select id="aux-select" name="aux">
+                    <option value="1">AUX2</option>
+                    <option value="2" selected>AUX3</option>
+                    <option value="3">AUX4</option>
+                    <option value="4">AUX5</option>
+                    <option value="5">AUX6</option>
+                    <option value="6">AUX7</option>
+                    <option value="7">AUX8</option>
+                    <option value="8">AUX9</option>
+                    <option value="9">AUX10</option>
+                    <option value="10">AUX11</option>
+                    <option value="11">AUX12</option>
+                </select>
+            </div>
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="template-select" data-i18n="vtx_template">VTX
+                        template</label>
+                    <span class="tooltiptext-right" data-i18n="vtx_template_tooltip"></span>
+                </div>
+                <select id="template-select" name="template"></select>
+            </div>
+        </div>
+        <blockquote id="notice" class="hidden" data-i18n="vtx_notice">
+        </blockquote>
+        <div id="port-protocol-select" class="hor-group">
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="port-select" data-i18n="vtx_serial_port">VTX serial
+                        port</label>
+
+                    <span class="tooltiptext-left" data-i18n="vtx_serial_port_tooltip"></span>
+                </div>
+                <select id="port-select" name="port">
+                    <option value="0" selected>UART 1</option>
+                    <option value="1">UART 2</option>
+                    <option value="2">UART 3</option>
+                    <option value="3">UART 4</option>
+                    <option value="4">UART 5</option>
+                    <option value="5">UART 6</option>
+                </select>
+            </div>
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="protocol-select" data-i18n="vtx_protocol">VTX
+                        protocol</label>
+                    <span class="tooltiptext-right" data-i18n="vtx_protocol_tooltip"></span>
+                </div>
+                <select id="protocol-select" name="protocol">
+                    <option value="8192" selected>IRC Tramp</option>
+                    <option value="2048">TBS SmartAudio</option>
+                </select>
+            </div>
+        </div>
+        <div id="band_channel_select" class="hor-group">
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="default_band_select" data-i18n="default_band">Default
+                        band</label>
+                    <span class="tooltiptext-left" data-i18n="default_band_tooltip"></span>
+                </div>
+                <select id="default_band_select" name="default_band">
+                    <option data-i18n="band_a_option" value="1" selected>Band A</option>
+                    <option data-i18n="band_b_option" value="2">Band B</option>
+                    <option data-i18n="band_e_option" value="3">Band E</option>
+                    <option data-i18n="band_f_option" value="4">Band F</option>
+                    <option data-i18n="band_r_option" value="5">Band R</option>
+                    <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                    <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                    <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                </select>
+            </div>
+            <div class="flex-child">
+                <div tabindex="0" class="tooltip"><label for="default_channel_select"
+                        data-i18n="default_channel">Default channel</label>
+                    <span class="tooltiptext-right" data-i18n="default_channel_tooltip"></span>
+                </div>
+                <select id="default_channel_select" name="default_channel">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+        </div>
+        <form id="vtx-form">
+            <div class="hor-group">
+                <div class="flex-child">
+                    <div tabindex="0" class="tooltip"><label for="power-state-1" data-i18n="power_state_1">Power state
+                            1</label>
+                        <span class="tooltiptext-left" data-i18n="power_state_1_tooltip"></span>
+                    </div>
+                    <input type="number" id="power-state-1" name="power-state-1" value="1" min="1" max="8">
+                    <div class="levels-inputs">
+                        <input class="levels-mob" type="number" id="power-state-1-level-from"
+                            name="power-state-1-levels-1" value="900">
+                        <span>-</span>
+                        <input class="levels-mob" type="number" id="power-state-1-level-to"
+                            name="power-state-1-levels-2" value="1100">
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div tabindex="0" class="tooltip"><label for="power-state-2" data-i18n="power_state_2">Power state
+                            2</label>
+                        <span class="tooltiptext" data-i18n="power_state_2_tooltip"></span>
+                    </div>
+                    <input type="number" id="power-state-2" name="power-state-2" value="2" min="1" max="8">
+                    <div class="levels-inputs">
+                        <input class="levels-mob" type="number" id="power-state-2-level-from"
+                            name="power-state-2-levels-1" value="1400">
+                        <span>-</span>
+                        <input class="levels-mob" type="number" id="power-state-2-level-to"
+                            name="power-state-2-levels-2" value="1600">
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div tabindex="0" class="tooltip"><label for="power-state-3" data-i18n="power_state_3">Power state
+                            3</label>
+                        <span class="tooltiptext-right" data-i18n="power_state_3_tooltip"></span>
+                    </div>
+                    <input type="number" id="power-state-3" name="power-state-3" value="4" min="1" max="8">
+                    <div class="levels-inputs">
+                        <input class="levels-mob" type="number" id="power-state-3-level-from"
+                            name="power-state-3-levels-1" value="1900">
+                        <span>-</span>
+                        <input class="levels-mob" type="number" id="power-state-3-level-to"
+                            name="power-state-3-levels-2" value="2100">
+                    </div>
+                </div>
+            </div>
+            <div class="flex-child checkbox-container">
+                <input type="checkbox" id="band-checkbox">
+                <label for="band-checkbox" class="checkbox_label" data-i18n="band_checkbox">Band control</label>
+            </div>
+        </form>
+        <form id="band-form">
+            <div id=band-control class="hidden">
+                <div class="flex-child checkbox-container">
+                    <input type="checkbox" id="6-band-checkbox">
+                    <label for="6-band-checkbox" class="checkbox_label" data-i18n="six_band_checkbox">Setup 6
+                        positions</label>
+                </div>
+                <div id="aux-template-select" class="hor-group">
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip top-15"><label class="required" for="band-select"
+                                data-i18n="band_select">AUX for band control</label>
+                            <span class="tooltiptext-left" data-i18n="band_select_tooltip"></span>
+                        </div>
+                        <select id="band-select" name="band-aux">
+                            <option value="" data-i18n="band_select_option">- Select AUX for band control -</option>
+                            <option value="1">AUX2</option>
+                            <option value="2">AUX3</option>
+                            <option value="3">AUX4</option>
+                            <option value="4">AUX5</option>
+                            <option value="5">AUX6</option>
+                            <option value="6">AUX7</option>
+                            <option value="7">AUX8</option>
+                            <option value="8">AUX9</option>
+                            <option value="9">AUX10</option>
+                            <option value="10">AUX11</option>
+                            <option value="11">AUX12</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="hor-group">
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-1" data-i18n="band_state_1">Band
+                                1</label>
+                            <span class="tooltiptext-left" data-i18n="band_state_1_tooltip"></span>
+                        </div>
+                        <select id="band-state-1" name="band-state-1">
+                            <option data-i18n="band_0_option" value="0">Do not change</option>
+                            <option data-i18n="band_a_option" value="1">Band A</option>
+                            <option data-i18n="band_b_option" value="2">Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5" selected>Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-1"
+                                data-i18n="channel_state_1">Channel 1</label>
+                            <span class="tooltiptext-left" data-i18n="channel_state_1_tooltip"></span>
+                        </div>
+                        <select id="channel-state-1" name="channel-state-1">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-1-level-from"
+                                name="band-state-1-levels-1" value="900">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-1-level-to"
+                                name="band-state-1-levels-2" value="1100">
+                        </div>
+                    </div>
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-2" data-i18n="band_state_2">Band
+                                2</label>
+                            <span class="tooltiptext" data-i18n="band_state_2_tooltip"></span>
+                        </div>
+                        <select id="band-state-2" name="band-state-2">
+                            <option data-i18n="band_0_option" value="0">Do not change</option>
+                            <option data-i18n="band_a_option" value="1" selected>Band A</option>
+                            <option data-i18n="band_b_option" value="2">Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5">Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-2"
+                                data-i18n="channel_state_2">Channel 2</label>
+                            <span class="tooltiptext" data-i18n="channel_state_2_tooltip"></span>
+                        </div>
+                        <select id="channel-state-2" name="channel-state-2">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-2-level-from"
+                                name="band-state-2-levels-1" value="1400">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-2-level-to"
+                                name="band-state-2-levels-2" value="1600">
+                        </div>
+                    </div>
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-3" data-i18n="band_state_3">Band
+                                3</label>
+                            <span class="tooltiptext-right" data-i18n="band_state_3_tooltip"></span>
+                        </div>
+                        <select id="band-state-3" name="band-state-3">
+                            <option data-i18n="band_0_option" value="0">Do not change</option>
+                            <option data-i18n="band_a_option" value="1">Band A</option>
+                            <option data-i18n="band_b_option" value="2" selected>Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5">Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-3"
+                                data-i18n="channel_state_3">Channel 3</label>
+                            <span class="tooltiptext-right" data-i18n="channel_state_3_tooltip"></span>
+                        </div>
+                        <select id="channel-state-3" name="channel-state-3">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-3-level-from"
+                                name="band-state-3-levels-1" value="1900">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-3-level-to"
+                                name="band-state-3-levels-2" value="2100">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: none;" id="6_band_form" class="hor-group">
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-4" data-i18n="band_state_4">Band
+                                4</label>
+                            <span class="tooltiptext-left" data-i18n="band_state_4_tooltip"></span>
+                        </div>
+                        <select id="band-state-4" name="band-state-4">
+                            <option data-i18n="band_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="band_a_option" value="1">Band A</option>
+                            <option data-i18n="band_b_option" value="2">Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5">Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-4"
+                                data-i18n="channel_state_4">Channel 4</label>
+                            <span class="tooltiptext-left" data-i18n="channel_state_4_tooltip"></span>
+                        </div>
+                        <select id="channel-state-4" name="channel-state-4">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-4-level-from"
+                                name="band-state-4-levels-1" value="1525">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-4-level-to"
+                                name="band-state-4-levels-2" value="1625">
+                        </div>
+                    </div>
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-5" data-i18n="band_state_5">Band
+                                5</label>
+                            <span class="tooltiptext" data-i18n="band_state_5_tooltip"></span>
+                        </div>
+                        <select id="band-state-5" name="band-state-5">
+                            <option data-i18n="band_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="band_a_option" value="1">Band A</option>
+                            <option data-i18n="band_b_option" value="2">Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5">Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-5"
+                                data-i18n="channel_state_5">Channel 5</label>
+                            <span class="tooltiptext" data-i18n="channel_state_5_tooltip"></span>
+                        </div>
+                        <select id="channel-state-5" name="channel-state-5">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-5-level-from"
+                                name="band-state-5-levels-1" value="1675">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-5-level-to"
+                                name="band-state-5-levels-2" value="1775">
+                        </div>
+                    </div>
+                    <div class="flex-child">
+                        <div tabindex="0" class="tooltip"><label for="band-state-6" data-i18n="band_state_6">Band
+                                6</label>
+                            <span class="tooltiptext-right" data-i18n="band_state_6_tooltip"></span>
+                        </div>
+                        <select id="band-state-6" name="band-state-6">
+                            <option data-i18n="band_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="band_a_option" value="1">Band A</option>
+                            <option data-i18n="band_b_option" value="2">Band B</option>
+                            <option data-i18n="band_e_option" value="3">Band E</option>
+                            <option data-i18n="band_f_option" value="4">Band F</option>
+                            <option data-i18n="band_r_option" value="5">Band R</option>
+                            <option data-i18n="band_6_option" value="6">‼️ Band #6 in vtx table</option>
+                            <option data-i18n="band_7_option" value="7">‼️ Band #7 in vtx table</option>
+                            <option data-i18n="band_8_option" value="8">‼️ Band #8 in vtx table</option>
+                        </select>
+                        <div tabindex="0" class="tooltip top-8"><label for="channel-state-6"
+                                data-i18n="channel_state_6">Channel 6</label>
+                            <span class="tooltiptext-right" data-i18n="channel_state_6_tooltip"></span>
+                        </div>
+                        <select id="channel-state-6" name="channel-state-6">
+                            <option data-i18n="channel_0_option" value="0" selected>Do not change</option>
+                            <option data-i18n="channel_1_option" value="1">Channel 1</option>
+                            <option data-i18n="channel_2_option" value="2">Channel 2</option>
+                            <option data-i18n="channel_3_option" value="3">Channel 3</option>
+                            <option data-i18n="channel_4_option" value="4">Channel 4</option>
+                            <option data-i18n="channel_5_option" value="5">Channel 5</option>
+                            <option data-i18n="channel_6_option" value="6">Channel 6</option>
+                            <option data-i18n="channel_7_option" value="7">Channel 7</option>
+                            <option data-i18n="channel_8_option" value="8">Channel 8</option>
+                        </select>
+                        <div class="levels-inputs">
+                            <input class="levels-mob" type="number" id="band-state-6-level-from"
+                                name="band-state-6-levels-1" value="1950">
+                            <span>-</span>
+                            <input class="levels-mob" type="number" id="band-state-6-level-to"
+                                name="band-state-6-levels-2" value="2050">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-child checkbox-container">
+                <input type="checkbox" checked id="confirmation-checkbox">
+                <label for="confirmation-checkbox" class="checkbox_label" data-i18n="include_checkbox">Include VTX table
+                    for selected template</label>
+            </div>
+            <button id="generate-button" type="button" data-i18n="generate_button" onclick="generateResult()">Generate
+                CLI</button>
+
+        </form>
+        <div id="result" class="hidden">
+            <pre id="result-output"></pre>
+            <div class="hor-group no-bottom-margin">
+
+                <button id="copy-button" data-i18n="copy_button" onclick="copyToClipboard()">Copy result</button>
+                <button id="send-command-button" type="button" data-i18n="send_button">Send to
+                    FC</button>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+
+        <h4>
+            <span data-i18n="version">Version</span> 1.9.1, February 23, 2025<div class="top-8"><a href="#"
+                    id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+            </div>
+        </h4>
+
+        <script>
+            const CONFIG = {
+                SP_ID: "1WKtwOc7zrnnozhoKhJWHadSrRrpFtUXm3nHMHPsE7pE",
+                SH_ID: "0",
+                // SH_ID: "721226251", //test db
+            }
+
+        </script>
+
+        <script src="../js/translations.js?v=1.0.1"></script>
+        <script src="script.js?v=1.0.0"></script>
+        <script src="../js/templates.js"></script>
+        <script src="../js/theme.js"></script>
+        <script src="../js/overlay.js"></script>
+        <script src="../js/toast.js"></script>
+
+
+        <textarea id="vtxTable" style="width: 100%;" class="hidden"></textarea>
+
+</body>
+
+</html>

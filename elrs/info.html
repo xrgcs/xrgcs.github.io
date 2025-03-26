@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="elrs_info">Довідка MafiaLRS</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/controls.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <style>
+        p,
+        li {
+            line-height: 150%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .pic-round {
+            border-radius: 10px;
+        }
+
+        .pic-border {
+            border: 2px solid #dfdfdf;
+        }
+
+        .pic-dark {
+            filter: var(--infopic-filter)
+        }
+
+        @media (max-width: 640px) {
+
+            p,
+            ol,
+            ul {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="back-button" tabindex="1" onclick="location.href='/elrs'"><svg width="19" height="13"
+                viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.68994 12.7812L0.689941 6.78125L6.68994 0.78125L8.08994 2.18125L4.48994 5.78125H18.6899V7.78125H4.48994L8.08994 11.3813L6.68994 12.7812Z"
+                    fill="#75B6FF" />
+            </svg> </div>
+        <img id="logo" src="../images/mafia.svg" width="72px" height="72px" class="center">
+        <h1 data-i18n="elrs_info">Довідка MafiaLRS</h1>
+        <blockquote class="good" id="notice">
+            Увага! В цій прошивці змінено тільки діапазони частот і додані деякі зручності. Якщо вам потрібні додаткові
+            елементи безпеки, то
+            користуйтеся спеціалізованими прошивками. Наприклад Barvinok-5.
+        </blockquote>
+        <h3>Навігація</h3>
+        <ul>
+            <li><a href="#release-notes">Історія оновлень</a></li>
+            <li><a href="#features">Особливості прошивки</a></li>
+            <li><a href="#rx-update">Прошивка RX</a></li>
+            <li><a href="#tx-update">Прошивка TX</a></li>
+            <li><a href="#lua-frq-select">Вибір частоти TX/RX через LUA</a></li>
+            <li><a href="#rx-frq-select">Вибір частоти RX через Wifi</a></li>
+            <li><a href="#tx-frq-select">Вибір частоти TX через Wifi</a></li>
+        </ul>
+        <h3 id="release-notes">Історія оновлень</h3>
+        <p><strong>Версія 1.2.2</strong></p>
+        <ul>
+            <li>Внесені зміни які оптимізують веб-інтерфейс для старих MCU (ESP8285). Має помітно прискоритися
+                завантаження сторінки, особливо на приймачах зі звʼязкою ESP8285+LR1121, таких як Dbr1.
+            </li>
+        </ul>
+        <p><strong>Версія 1.2.1</strong></p>
+        <ul>
+            <li>Backpack Pro відключено за замовчуванням, щоб виключити проблеми з довільним перемиканням каналів у тих,
+                хто ним не користується</li>
+        </ul>
+        <p><strong>Версія 1.2</strong></p>
+        <ul>
+            <li>Додалась підтримка нестандартних частот для 2.4 діапазону, зміна частоти працює так само - як через
+                вайфай
+                так і через LUA з синхронізацією з приймачем</li>
+            <li>Додано Backpack Pro (дякую Akceptor). Він дозволяє перемикати бенди/канали відео через бекпек за
+                допомогою обраного AUX, включаючи Х-бенд. Налаштовується через LUA</li>
+        </ul>
+        <p><strong>Версія 1.1</strong></p>
+        <ul>
+            <li>Прошивка тепер базується на версії ELRS 3.5.3</li>
+            <li>Частоти Pegas винесені в окремий блок</li>
+            <li>Додано частоти VYRIY</li>
+            <li>Додано можливість переключати частоту через LUA на апаратурі. При цьому зміна частоти на TX
+                синхронізується з RX (дякую розробнику прошивки Bandera ELRS за допомогу з реалізацією цієї функції)
+            </li>
+        </ul>
+        <h3 id="features">Особливості прошивки</h3>
+        <img src="pic/header.png" width="100%" class="pic-round pic-dark">
+        <p>Основними особливостями цієї прошивки є:
+        <ul>
+            <li>Підтримка нестандартних діапазонів частот</li>
+            <ul>
+                <li>M-433</li>
+                <li>M-485</li>
+                <li>M-500</li>
+                <li>M-730</li>
+                <li>M-750</li>
+                <li>M-780</li>
+                <li>M-800</li>
+                <li>M-830</li>
+                <li>M-960</li>
+                <li>M-1000</li>
+                <li>M-2.1</li>
+                <li>M-2.2</li>
+                <li>M-2.3</li>
+                <li>M-2.5</li>
+                <li>M-2.6</li>
+            </ul>
+            <li>Вибір частоти через Wifi – немає необхідності перепрошивати TX/RX для зміни частоти</li>
+            <li>Вибір частоти через LUA скрипт ExpressLRS на апаратурі</li>
+            <li>Автоматична синхронізація зміни частоти між TX і RX — змінивши частоту через LUA, приймач сам
+                переключиться на неї</li>
+            <li>Підтримка діапазонів частот які використовуються деякими виробниками FPV дронів. Наприклад, якщо ви
+                використовуєте дрони від SHRIKE, то немає необхідності прошивати TX їх прошивкою, ви можете обрати
+                сумісні діапазони через Wifi або LUA. Перелік виробників буде доповнюватися з часом.</li>
+            <img src="pic/domains_others.png" width="100%" class="pic-round pic-border pic-dark">
+            <li>Підтримка стандартних діапазонів частот, наприклад FCC915. Залишається можливість працювати з не
+                модифікованими приймачами.</li>
+            <li>Підтримка Backpack Pro від Akceptor, для швидкої і зручної зміни відео-каналів
+                з сінхронізацією з окулярами.</li>
+            </p>
+        </ul>
+        <h3 id="rx-update">Прошивка RX</h3>
+        <ol>
+            <li>Переведіть приймач в режим Wifi точки доступа</li>
+            <li>Якщо приймач підключено до TX, то TOOLS > ExpressLRS > WiFi Connectivity > Enable Rx WiFi</li>
+            <img src="pic/enable_rx_wifi.jpg" width="100%" class="pic-round pic-border pic-dark">
+            <li>Якщо приймач не підключено до TX, то утримуйте кнопку на приймачі до моменту поки діод не почне швидко
+                блимати</li>
+            <li>Або почекайте 1 хвилину поки приймач перейде в режим Wifi точки доступу</li>
+            <li>Підключіться до Wifi мережі ExpressLRS RX (пароль expresslrs)</li>
+            <li>Якщо сторінка з налаштуваннями не відкрилася автоматично після підключення, то відкрийте браузер і в
+                адресну строку введіть 10.0.0.1</li>
+            <li>Перейдіть на вкладку Update</li>
+            <img src="pic/update.png" width="100%" class="pic-round pic-border pic-dark">
+            <li>Скачайте резервну копію прошивки по посиланню</li>
+            <li>Завантажте файл прошивки якій відповідає моделі вашого передавача</li>
+        </ol>
+        <h3 id="tx-update">Прошивка TX</h3>
+        <ol>
+            <li>Переведіть передавач в режим Wifi точки доступа</li>
+            <li>TOOLS > ExpressLRS > WiFi Connectivity > Enable WiFi</li>
+            <img src="pic/enable_wifi.jpg" width="100%" class="pic-round pic-border pic-dark">
+            <li>Підключіться до Wifi мережі ExpressLRS TX (пароль expresslrs)</li>
+            <li>Якщо сторінка з налаштуваннями не відкрилася автоматично після підключення, то відкрийте браузер і в
+                адресну строку введіть 10.0.0.1</li>
+            <li>Перейдіть у вкладку Update</li>
+            <li>Скачайте резервну копію прошивки по посиланню</li>
+            <li>Завантажте файл прошивки якій відповідає моделі вашого передавача</li>
+        </ol>
+        <h3 id="lua-frq-select">Вибір частоти TX/RX через LUA</h3>
+        <ol>
+            <li>На TX Відкрийте LUA-скрипт ExpressLRS (TOOLS > ExpressLRS)</li>
+            <li>Прокрутіть головне меню скрипта до пункту "Domain"</li>
+            <img src="pic/select_lua.jpg" width="100%" class="pic-round pic-border pic-dark">
+            <li>Активуйте пункт і оберіть потрібну частоту</li>
+            <li>Після підтвердження передавач відразу переключиться на неї</li>
+            <li>Якщо в цей момент підключено приймач, то він автоматично перемкнеться на ту саму частоту
+                (це займає 10-20 секунд, не раджу робити в польоті)</li>
+        </ol>
+        <h3 id="rx-frq-select">Вибір частоти RX через Wifi</h3>
+        <ol>
+            <li>Переведіть приймач в режим Wifi точки доступа</li>
+            <li>Якщо приймач підключено до TX, то TOOLS > ExpressLRS > WiFi Connectivity > Enable Rx WiFi</li>
+            <img src="pic/enable_rx_wifi.jpg" width="100%" class="pic-round pic-border pic-dark">
+            <li>Якщо приймач не підключено до TX, то утримуйте кнопку на приймачі до моменту поки діод не почне швидко
+                блимати</li>
+            <li>Або почекайте 1 хвилину поки приймач перейде в режим Wifi точки доступу</li>
+            <li>Підключіться до Wifi мережі ExpressLRS RX (пароль expresslrs)</li>
+            <li>Якщо сторінка з налаштуваннями не відкрилася автоматично після підключення, то відкрийте браузер і в
+                адресну строку введіть 10.0.0.1</li>
+            <li>Перейдіть на вкладку Options</li>
+            <img src="pic/select_domain.png" width="100%" class="pic-round pic-border pic-dark">
+
+            <li>В селекторі “Regulatory domain” виберіть потрібний діапазон частот</li>
+        </ol>
+        <h3 id="tx-frq-select">Вибір частоти TX через Wifi</h3>
+        <ol>
+            <li>Переведіть передавач в режим Wifi точки доступа</li>
+            <li>TOOLS > ExpressLRS > WiFi Connectivity > Enable WiFi</li>
+            <img src="pic/enable_wifi.jpg" width="100%" class="pic-round pic-border pic-dark">
+            <li>Підключіться до Wifi мережі ExpressLRS TX (пароль expresslrs)</li>
+            <li>Якщо сторінка з налаштуваннями не відкрилася автоматично після підключення, то відкрийте браузер і в
+                адресну строку введіть 10.0.0.1</li>
+            <li>В селекторі “Regulatory domain” виберіть потрібний діапазон частот</li>
+        </ol>
+    </div>
+    </div>
+    <div class="center">
+        <h4>
+            <div class="top-8"><a href="#" id="theme-toggle" data-i18n="theme_toggle">Switch theme</a></div>
+            <div class="top-8"><a href="https://bit.ly/vtxtools_info" tabindex="3" data-i18n="channel">Updates</a>
+            </div>
+        </h4>
+    </div>
+    <script src="../js/translations.js?v=1.0.0"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/overlay.js"></script>
+
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47969c23cbe94e01bf4d21e77c08169e"}'></script><!-- Cloudflare Pages Analytics --></body>
+
+</html>

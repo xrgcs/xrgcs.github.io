@@ -1,0 +1,143 @@
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-size: 13px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--input-text-color);
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+}
+
+select {
+    padding: 10px;
+    padding-right: 20px;
+    -moz-appearance: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23555555%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+/* For IE (thanks to @SaiManoj) */
+select::-ms-expand {
+    display: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:disabled,
+button:disabled:hover {
+    background-color: var(--button-disabled);
+    color: var(--tooltiptext-color);
+    cursor: not-allowed;
+    color: var(--button-disabled-text);
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+#copy-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--copy-button-background);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#copy-button:hover,
+.add-button:hover {
+    background-color: var(--copy-button-hover);
+}
+
+.delete-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--delete-button-background);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: var(--delete-button-hover);
+}
+.checkbox-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 12px;
+    height: 24px;
+    width: 24px;
+    filter: var(--checkbox-filter);
+    justify-content: flex-start;
+}
+
+.checkbox-container label {
+    margin-bottom: 0px;
+    font-size: 16px;
+    align-self: center;
+
+}
+
+
+@media (max-width: 640px) {
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px !important;
+    }
+    input,
+    select {
+        font-size: 12px;
+    }
+    .checkbox_label {
+        font-size: 12px !important;
+
+    }
+
+    button, .tab-button, #copy-button {
+        font-size: 14px;
+    }
+    
+}
